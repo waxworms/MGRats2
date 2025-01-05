@@ -1,0 +1,5 @@
+# This directory is a Syncthing folder marker.
+# Do not delete.
+
+folderID: neagodot
+created: 2025-01-04T13:00:07Z

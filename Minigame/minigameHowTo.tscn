@@ -1,0 +1,100 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Assets/Comic Sans MS/Comic Sans MS.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Minigame/minigameHowToScript.gd" type="Script" id=2]
+[ext_resource path="res://Minigame/minigameMainMenu.tscn" type="PackedScene" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 45
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.364706, 0.933333, 0.72549, 1 )
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.622873, 0.978255, 0.848357, 1 )
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.150146, 0.9375, 0.649709, 1 )
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+
+[node name="HowTo" type="Node2D"]
+script = ExtResource( 2 )
+menuMinigameScene = ExtResource( 3 )
+
+[node name="Background" type="ColorRect" parent="."]
+margin_right = 1024.0
+margin_bottom = 628.0
+color = Color( 0.691895, 0.425781, 0.851563, 1 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Background"]
+margin_right = 1024.0
+margin_bottom = 628.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/HBoxContainer"]
+margin_right = 510.0
+margin_bottom = 628.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Background/HBoxContainer/VBoxContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 485.0
+margin_bottom = 64.0
+
+[node name="BackButt" type="Button" parent="Background/HBoxContainer/VBoxContainer/MarginContainer"]
+margin_right = 475.0
+margin_bottom = 64.0
+focus_mode = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+enabled_focus_mode = 0
+text = "BACK"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Background/HBoxContainer"]
+margin_left = 514.0
+margin_right = 1024.0
+margin_bottom = 628.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Background/HBoxContainer/VBoxContainer2"]
+margin_right = 510.0
+margin_bottom = 628.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="Background/HBoxContainer/VBoxContainer2/MarginContainer"]
+margin_right = 510.0
+margin_bottom = 628.0
+color = Color( 0.861809, 0.657532, 0.984375, 1 )
+
+[node name="Label" type="Label" parent="Background/HBoxContainer/VBoxContainer2/MarginContainer"]
+margin_top = 264.0
+margin_right = 510.0
+margin_bottom = 363.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+autowrap = true
+
+[connection signal="button_up" from="Background/HBoxContainer/VBoxContainer/MarginContainer/BackButt" to="." method="_on_BackButt_button_up"]

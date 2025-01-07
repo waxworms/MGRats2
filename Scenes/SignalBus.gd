@@ -1,0 +1,5 @@
+extends Node
+
+signal playerEnteredDoorLeft
+signal playerEnteredDoorRight
+signal player

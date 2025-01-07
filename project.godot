@@ -17,6 +17,7 @@ config/icon="res://icon.png"
 [autoload]
 
 PortalGameAreaScript="*res://Scenes/PortalGameAreaScript.gd"
+SignalBus="*res://Scenes/SignalBus.gd"
 
 [display]
 

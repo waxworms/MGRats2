@@ -1,4 +1,7 @@
 extends Camera2D
 
-func _on_PortalGameArea_playerEntered():
+func _ready():
+	SignalBus.connect("playerEnteredDoorRight", self, "_on_playerEnteredDoorRight")
+
+func _on_playerEnteredDoorRight():
 	self.make_current()

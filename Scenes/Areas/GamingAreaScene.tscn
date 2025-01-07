@@ -1,7 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Assets/Comic Sans MS/Comic Sans MS.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://Scenes/Player/PlayerScene.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/bg2_placeholder.png" type="Texture" id=3]
 [ext_resource path="res://Scenes/Areas/GamingAreaSceneScript.gd" type="Script" id=4]
 
@@ -16,24 +15,27 @@ corner_radius_top_right = 100
 corner_radius_bottom_right = 100
 corner_radius_bottom_left = 100
 
-[node name="GamingAreaScene" type="Node2D"]
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 512, 383.5 )
+
+[node name="GamingAreaScene" type="Area2D"]
 script = ExtResource( 4 )
 
 [node name="Background" type="Sprite" parent="."]
-position = Vector2( 513.5, 314 )
-scale = Vector2( 1.01465, 0.846354 )
 texture = ExtResource( 3 )
 
-[node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 522, 283 )
-
 [node name="PlayMinigameButt" type="Button" parent="."]
-margin_left = 707.0
-margin_top = 45.0
-margin_right = 977.0
-margin_bottom = 171.0
+margin_left = 142.0
+margin_top = -305.0
+margin_right = 452.0
+margin_bottom = -168.0
 custom_fonts/font = SubResource( 1 )
 custom_styles/normal = SubResource( 2 )
 text = "PLAY MINIGAME"
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 3 )
+
+[connection signal="body_entered" from="." to="." method="_on_GamingAreaScene_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_GamingAreaScene_body_exited"]
 [connection signal="button_up" from="PlayMinigameButt" to="." method="_on_PlayMinigameButt_button_up"]

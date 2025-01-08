@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Assets/minigame_kitchenbg_placeholder.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Comic Sans MS/Comic Sans MS.ttf" type="DynamicFontData" id=2]
@@ -16,16 +16,28 @@
 [ext_resource path="res://Assets/Minigame Ingredients/ingr12_sprite_placeholder.png" type="Texture" id=14]
 [ext_resource path="res://Assets/Minigame Ingredients/ingr5_sprite_placeholder.png" type="Texture" id=15]
 [ext_resource path="res://Assets/Minigame Ingredients/ingr11_sprite_placeholder.png" type="Texture" id=16]
+[ext_resource path="res://Minigame/HoverButtStyle.tres" type="StyleBox" id=17]
+[ext_resource path="res://Minigame/NormalButtStyle.tres" type="StyleBox" id=18]
 
 [sub_resource type="DynamicFont" id=3]
 size = 25
 font_data = ExtResource( 2 )
 
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.788235, 0.854902, 0.941176, 1 )
+[sub_resource type="DynamicFont" id=4]
+size = 25
+font_data = ExtResource( 2 )
 
-[sub_resource type="StyleBoxFlat" id=2]
-bg_color = Color( 0.545098, 0.74902, 1, 1 )
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.941176, 0.788235, 0.788235, 1 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.866667, 0.368627, 0.368627, 1 )
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.815686, 0.941176, 0.788235, 1 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0.411765, 0.807843, 0.32549, 1 )
 
 [node name="MainGame" type="Node2D"]
 script = ExtResource( 3 )
@@ -61,8 +73,8 @@ margin_bottom = 103.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 3 )
-custom_styles/hover = SubResource( 1 )
-custom_styles/normal = SubResource( 2 )
+custom_styles/hover = ExtResource( 17 )
+custom_styles/normal = ExtResource( 18 )
 text = "Cheese"
 
 [node name="Filling2" type="Button" parent="FillsContainer"]
@@ -72,8 +84,8 @@ margin_bottom = 103.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 3 )
-custom_styles/hover = SubResource( 1 )
-custom_styles/normal = SubResource( 2 )
+custom_styles/hover = ExtResource( 17 )
+custom_styles/normal = ExtResource( 18 )
 text = "Eggs"
 
 [node name="Filling3" type="Button" parent="FillsContainer"]
@@ -83,8 +95,8 @@ margin_bottom = 103.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 3 )
-custom_styles/hover = SubResource( 1 )
-custom_styles/normal = SubResource( 2 )
+custom_styles/hover = ExtResource( 17 )
+custom_styles/normal = ExtResource( 18 )
 text = "Avocado"
 
 [node name="Filling4" type="Button" parent="FillsContainer"]
@@ -94,8 +106,8 @@ margin_bottom = 103.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 3 )
-custom_styles/hover = SubResource( 1 )
-custom_styles/normal = SubResource( 2 )
+custom_styles/hover = ExtResource( 17 )
+custom_styles/normal = ExtResource( 18 )
 text = "Tomato"
 
 [node name="Filling5" type="Button" parent="FillsContainer"]
@@ -105,8 +117,8 @@ margin_bottom = 103.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 3 )
-custom_styles/hover = SubResource( 1 )
-custom_styles/normal = SubResource( 2 )
+custom_styles/hover = ExtResource( 17 )
+custom_styles/normal = ExtResource( 18 )
 text = "Onion"
 
 [node name="Filling6" type="Button" parent="FillsContainer"]
@@ -116,8 +128,8 @@ margin_bottom = 210.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 3 )
-custom_styles/hover = SubResource( 1 )
-custom_styles/normal = SubResource( 2 )
+custom_styles/hover = ExtResource( 17 )
+custom_styles/normal = ExtResource( 18 )
 text = "Tuna"
 
 [node name="Filling7" type="Button" parent="FillsContainer"]
@@ -128,8 +140,8 @@ margin_bottom = 210.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 3 )
-custom_styles/hover = SubResource( 1 )
-custom_styles/normal = SubResource( 2 )
+custom_styles/hover = ExtResource( 17 )
+custom_styles/normal = ExtResource( 18 )
 text = "Bacon"
 
 [node name="Filling8" type="Button" parent="FillsContainer"]
@@ -140,8 +152,8 @@ margin_bottom = 210.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 3 )
-custom_styles/hover = SubResource( 1 )
-custom_styles/normal = SubResource( 2 )
+custom_styles/hover = ExtResource( 17 )
+custom_styles/normal = ExtResource( 18 )
 text = "Chicken"
 
 [node name="Filling9" type="Button" parent="FillsContainer"]
@@ -152,8 +164,8 @@ margin_bottom = 210.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 3 )
-custom_styles/hover = SubResource( 1 )
-custom_styles/normal = SubResource( 2 )
+custom_styles/hover = ExtResource( 17 )
+custom_styles/normal = ExtResource( 18 )
 text = "Crab"
 
 [node name="Filling10" type="Button" parent="FillsContainer"]
@@ -164,8 +176,8 @@ margin_bottom = 210.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 3 )
-custom_styles/hover = SubResource( 1 )
-custom_styles/normal = SubResource( 2 )
+custom_styles/hover = ExtResource( 17 )
+custom_styles/normal = ExtResource( 18 )
 text = "Ham"
 
 [node name="BreadContainer" type="GridContainer" parent="."]
@@ -181,8 +193,8 @@ margin_bottom = 110.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 3 )
-custom_styles/hover = SubResource( 1 )
-custom_styles/normal = SubResource( 2 )
+custom_styles/hover = ExtResource( 17 )
+custom_styles/normal = ExtResource( 18 )
 text = "White Bread"
 
 [node name="Bread2Butt" type="Button" parent="BreadContainer"]
@@ -192,8 +204,8 @@ margin_bottom = 110.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 3 )
-custom_styles/hover = SubResource( 1 )
-custom_styles/normal = SubResource( 2 )
+custom_styles/hover = ExtResource( 17 )
+custom_styles/normal = ExtResource( 18 )
 text = "Brown Bread"
 
 [node name="Bread3Butt" type="Button" parent="BreadContainer"]
@@ -203,8 +215,8 @@ margin_bottom = 110.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 3 )
-custom_styles/hover = SubResource( 1 )
-custom_styles/normal = SubResource( 2 )
+custom_styles/hover = ExtResource( 17 )
+custom_styles/normal = ExtResource( 18 )
 text = "Multigrain Bread"
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
@@ -215,9 +227,47 @@ margin_bottom = 245.0
 
 [node name="SandwichContainer" type="GridContainer" parent="CenterContainer"]
 margin_left = 512.0
-margin_top = 122.0
+margin_top = 118.0
 margin_right = 512.0
-margin_bottom = 122.0
+margin_bottom = 126.0
+
+[node name="TopBread" type="MarginContainer" parent="CenterContainer/SandwichContainer"]
+
+[node name="Fillings" type="GridContainer" parent="CenterContainer/SandwichContainer"]
+margin_top = 4.0
+margin_bottom = 4.0
+
+[node name="BottomBread" type="MarginContainer" parent="CenterContainer/SandwichContainer"]
+margin_top = 8.0
+margin_bottom = 8.0
+
+[node name="OtherButtsContainer" type="GridContainer" parent="."]
+margin_left = 612.0
+margin_top = 257.0
+margin_right = 1019.0
+margin_bottom = 371.0
+columns = 2
+
+[node name="ResetPlateButt" type="Button" parent="OtherButtsContainer"]
+margin_right = 202.0
+margin_bottom = 114.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 4 )
+custom_styles/hover = SubResource( 5 )
+custom_styles/normal = SubResource( 6 )
+text = "Reset Plate"
+
+[node name="SubmitButt" type="Button" parent="OtherButtsContainer"]
+margin_left = 206.0
+margin_right = 407.0
+margin_bottom = 114.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 4 )
+custom_styles/hover = SubResource( 7 )
+custom_styles/normal = SubResource( 8 )
+text = "Done"
 
 [connection signal="button_up" from="FillsContainer/Filling1" to="." method="_on_Filling1_button_up"]
 [connection signal="button_up" from="FillsContainer/Filling2" to="." method="_on_Filling2_button_up"]
@@ -232,3 +282,4 @@ margin_bottom = 122.0
 [connection signal="button_up" from="BreadContainer/Bread1Butt" to="." method="_on_Bread1Butt_button_up"]
 [connection signal="button_up" from="BreadContainer/Bread2Butt" to="." method="_on_Bread2Butt_button_up"]
 [connection signal="button_up" from="BreadContainer/Bread3Butt" to="." method="_on_Bread3Butt_button_up"]
+[connection signal="button_up" from="OtherButtsContainer/ResetPlateButt" to="." method="_on_ResetPlateButt_button_up"]

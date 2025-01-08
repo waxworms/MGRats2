@@ -19,7 +19,9 @@ var number = 0
 
 var numIngredients = 0
 
-onready var sandwichCont = get_node("CenterContainer/SandwichContainer")
+onready var sandwichCont = get_node("CenterContainer/SandwichContainer/Fillings")
+onready var topBreadCont = get_node("CenterContainer/SandwichContainer/TopBread")
+onready var bottomBreadCont = get_node("CenterContainer/SandwichContainer/BottomBread")
 const ingredientResource = preload("res://Minigame/IngredientScene.tscn")
 
 export(Texture) var ingr1
@@ -72,11 +74,24 @@ func addIngredient(index):
 	numIngredients +=1
 	ingredientInstance.name = "Ingredient"+str(numIngredients)
 	ingredientInstance.texture = get('ingr'+str(index))
-	var children = sandwichCont.get_child_count()
-	if children:
-		sandwichCont.add_child_below_node(sandwichCont.get_child(children-1), ingredientInstance)
-	else:
-		sandwichCont.add_child(ingredientInstance)
+	if index<=3:
+		var bottomBread = ingredientInstance.duplicate()
+		var topChild = topBreadCont.get_children()
+		var bottomChild = bottomBreadCont.get_children()
+		if topChild:
+			topBreadCont.remove_child(topChild[0])
+			topBreadCont.add_child(ingredientInstance)
+			bottomBreadCont.remove_child(bottomChild[0])
+			bottomBreadCont.add_child(bottomBread)
+		else:
+			topBreadCont.add_child(ingredientInstance)
+			bottomBreadCont.add_child(bottomBread)
+	elif playerFillings.size()<=4:
+		var children = sandwichCont.get_child_count()
+		if children:
+			sandwichCont.add_child_below_node(sandwichCont.get_child(children-1), ingredientInstance)
+		else:
+			sandwichCont.add_child(ingredientInstance)
 
 # filling signals
 
@@ -137,3 +152,6 @@ func _on_Bread3Butt_button_up():
 
 func _ready():
 	gameLoop()
+
+func _on_ResetPlateButt_button_up():
+	emptyPlate()

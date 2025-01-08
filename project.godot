@@ -11,7 +11,7 @@ config_version=4
 [application]
 
 config/name="Mgrats 2"
-run/main_scene="res://Scenes/Areas/ParentMapScene.tscn"
+run/main_scene="res://Minigame/minigameMainGame.tscn"
 config/icon="res://icon.png"
 
 [autoload]

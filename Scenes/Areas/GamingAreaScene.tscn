@@ -37,5 +37,4 @@ text = "PLAY MINIGAME"
 shape = SubResource( 3 )
 
 [connection signal="body_entered" from="." to="." method="_on_GamingAreaScene_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_GamingAreaScene_body_exited"]
 [connection signal="button_up" from="PlayMinigameButt" to="." method="_on_PlayMinigameButt_button_up"]

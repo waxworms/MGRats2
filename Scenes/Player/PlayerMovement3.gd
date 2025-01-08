@@ -6,18 +6,16 @@ var velocity = Vector2()
 onready var target = position
 var isMouse = true
 
-# export (int) var displacementOnRoomEntrance = 150
-
 func _ready():
 	SignalBus.connect("playerEnteredDoorRight", self, "_on_enteredDoorRight")
-	SignalBus.connect("playerEnteredDoorRight", self, "_on_enteredDoorLeft")
+	SignalBus.connect("playerEnteredDoorLeft", self, "_on_enteredDoorLeft")
 
 func _on_enteredDoorRight():
-	self.global_position.x += 200
+	self.global_position.x += 120
 	
 
 func _on_enteredDoorLeft():
-	self.global_position.x -= 200
+	self.global_position.x -= 120
 
 func get_input():
 	var movement_direction = Vector2()
@@ -48,7 +46,7 @@ func get_input():
 
 func _physics_process(_delta):
 	get_input()
-	if velocity.distance_to(target)>5:
+	if velocity.distance_to(target)>10:
 		velocity = move_and_slide(velocity)
 	else:
 		velocity = move_and_collide(velocity)

@@ -8,7 +8,7 @@ var breadArray = ['White', 'Brown', 'Multigrain']
 var fillingsArray = ['Cheese', 'Eggs', 'Avocado', 'Tomato', 'Onion', 'Tuna', 'Bacon', 'Chicken', 'Crab', 'Ham']
 
 onready var playerFillings = []
-onready var playerBread = 0
+onready var playerBread = -1
 onready var timeElapsed = 0
 onready var totalRating = 0
 onready var ordersCompleted = -1
@@ -23,6 +23,7 @@ onready var sandwichCont = get_node("CenterContainer/SandwichContainer/Fillings"
 onready var topBreadCont = get_node("CenterContainer/SandwichContainer/TopBread")
 onready var bottomBreadCont = get_node("CenterContainer/SandwichContainer/BottomBread")
 const ingredientResource = preload("res://Minigame/IngredientScene.tscn")
+var ingredientInstance
 
 export(Texture) var ingr1
 export(Texture) var ingr2
@@ -57,6 +58,10 @@ func generateFillings(n):
 func emptyPlate():
 	playerFillings = []
 	numIngredients = 0
+	playerBread = -1
+	updateBread()
+	updateFillingTree()
+
 
 func gameLoop():
 	if ordersCompleted<5:
@@ -68,87 +73,111 @@ func gameLoop():
 		ordFillings = generateFillings(number)
 	else:
 		pass # change to score screen
-	
-func addIngredient(index):
-	var ingredientInstance = ingredientResource.instance()
+
+func updateFillingTree():
+
+	# flush tree
+
+	for n in sandwichCont.get_children():
+		sandwichCont.remove_child(n)
+		n.queue_free()
+
+	# rerender tree
+
 	numIngredients +=1
-	ingredientInstance.name = "Ingredient"+str(numIngredients)
-	ingredientInstance.texture = get('ingr'+str(index))
-	if index<=3:
-		var bottomBread = ingredientInstance.duplicate()
-		var topChild = topBreadCont.get_children()
-		var bottomChild = bottomBreadCont.get_children()
-		if topChild:
-			topBreadCont.remove_child(topChild[0])
-			topBreadCont.add_child(ingredientInstance)
-			bottomBreadCont.remove_child(bottomChild[0])
-			bottomBreadCont.add_child(bottomBread)
-		else:
-			topBreadCont.add_child(ingredientInstance)
-			bottomBreadCont.add_child(bottomBread)
-	elif playerFillings.size()<=4:
+	for i in range(playerFillings.size()):
+		ingredientInstance = ingredientResource.instance()
+		ingredientInstance.name = "Ingredient" + str(numIngredients)
+		ingredientInstance.texture = get('ingr'+str(playerFillings[i]+4))
 		var children = sandwichCont.get_child_count()
 		if children:
 			sandwichCont.add_child_below_node(sandwichCont.get_child(children-1), ingredientInstance)
 		else:
 			sandwichCont.add_child(ingredientInstance)
 
+func updateBread():
+	var topBreadNode = ingredientResource.instance()
+	topBreadNode.name = "Top Bread"
+	topBreadNode.texture = get('ingr'+str(playerBread+1))
+	var bottomBreadNode = topBreadNode.duplicate()
+	if topBreadCont.get_child_count() == 0:
+		topBreadCont.add_child(topBreadNode)
+		bottomBreadCont.add_child(bottomBreadNode)
+	else:
+		var topChild = topBreadCont.get_children()
+		var bottomChild = bottomBreadCont.get_children()
+
+		topBreadCont.remove_child(topChild[0])
+		topBreadCont.add_child(topBreadNode)
+
+		bottomBreadCont.remove_child(bottomChild[0])
+		bottomBreadCont.add_child(bottomBreadNode)
+
 # filling signals
 
 func _on_Filling1_button_up():
-	playerFillings.append(0)
-	addIngredient(4)
-	
+	if playerFillings.size()<=3:
+		playerFillings.append(0)
+		updateFillingTree()
 
 func _on_Filling2_button_up():
-	playerFillings.append(1)
-	addIngredient(5)
+	if playerFillings.size()<=3:
+		playerFillings.append(1)
+		updateFillingTree()
 
 func _on_Filling3_button_up():
-	playerFillings.append(2)
-	addIngredient(6)
+	if playerFillings.size()<=3:
+		playerFillings.append(2)
+		updateFillingTree()
 
 func _on_Filling4_button_up():
-	playerFillings.append(3)
-	addIngredient(7)
+	if playerFillings.size()<=3:
+		playerFillings.append(3)
+		updateFillingTree()
 
 func _on_Filling5_button_up():
-	playerFillings.append(4)
-	addIngredient(8)
+	if playerFillings.size()<=3:
+		playerFillings.append(4)
+		updateFillingTree()
 
 func _on_Filling6_button_up():
-	playerFillings.append(5)
-	addIngredient(9)
+	if playerFillings.size()<=3:
+		playerFillings.append(5)
+		updateFillingTree()
 
 func _on_Filling7_button_up():
-	playerFillings.append(6)
-	addIngredient(10)
+	if playerFillings.size()<=3:
+		playerFillings.append(6)
+		updateFillingTree()
 
 func _on_Filling8_button_up():
-	playerFillings.append(7)
-	addIngredient(11)
+	if playerFillings.size()<=3:
+		playerFillings.append(7)
+		updateFillingTree()
 
 func _on_Filling9_button_up():
-	playerFillings.append(8)
-	addIngredient(12)
+	if playerFillings.size()<=3:
+		playerFillings.append(8)
+		updateFillingTree()
 
 func _on_Filling10_button_up():
-	playerFillings.append(9)
-	addIngredient(13)
+	if playerFillings.size()<=3:
+		playerFillings.append(9)
+		updateFillingTree()
 
 # bread signals
 
 func _on_Bread1Butt_button_up():
 	playerBread = 0
-	addIngredient(1)
+	updateBread()
 
 func _on_Bread2Butt_button_up():
 	playerBread = 1
-	addIngredient(2)
+	updateBread()
 
 func _on_Bread3Butt_button_up():
 	playerBread = 2
-	addIngredient(3)
+	updateBread()
 
 func _ready():
 	gameLoop()

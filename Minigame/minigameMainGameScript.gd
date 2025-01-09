@@ -1,8 +1,5 @@
 extends Node2D
 
-# initialise game variables
-
-
 # change these to paths to each sprite
 var breadArray = ['White', 'Brown', 'Multigrain']
 var fillingsArray = ['Cheese', 'Eggs', 'Avocado', 'Tomato', 'Onion', 'Tuna', 'Bacon', 'Chicken', 'Crab', 'Ham']
@@ -12,10 +9,11 @@ onready var playerBread = -1
 onready var timeElapsed = 0
 onready var totalRating = 0
 onready var ordersCompleted = -1
+onready var rating = 5
 
 var ordBread = 0
 var ordFillings = []
-var number = 0
+var numFillings = 0
 
 var numIngredients = 0
 
@@ -39,6 +37,8 @@ export(Texture) var ingr11
 export(Texture) var ingr12
 export(Texture) var ingr13
 
+onready var orderViewCont = get_node("OrderViewContainer")
+
 # function definitions
 
 func generateBread():
@@ -46,8 +46,8 @@ func generateBread():
 	return bread
 
 func generateNumFillings():
-	var numFillings = round(randi()%5+1)
-	return numFillings
+	var number = round(randi()%4+1)
+	return number
 
 func generateFillings(n):
 	var fillingsArr = []
@@ -69,10 +69,13 @@ func gameLoop():
 		emptyPlate()
 		ordersCompleted += 1
 		ordBread = generateBread()
-		number = generateNumFillings()
-		ordFillings = generateFillings(number)
+		numFillings = generateNumFillings()
+		ordFillings = generateFillings(numFillings)
+		updateOrderView()
+		rating = 5
 	else:
-		pass # change to score screen
+		var score = generateScore()
+		print(score)
 
 func updateFillingTree():
 
@@ -112,6 +115,59 @@ func updateBread():
 
 		bottomBreadCont.remove_child(bottomChild[0])
 		bottomBreadCont.add_child(bottomBreadNode)
+
+func updateOrderView():
+	ingredientInstance = ingredientResource.instance()
+	ingredientInstance.name = "Order Top Bread"
+	ingredientInstance.texture = get('ingr'+str(ordBread+1))
+	orderViewCont.add_child(ingredientInstance)
+
+	for i in range(numFillings):
+		ingredientInstance = ingredientResource.instance()
+		ingredientInstance.name="Order Ingredient"+str(i)
+		ingredientInstance.texture = get('ingr'+str(ordFillings[i]+1))
+		orderViewCont.add_child_below_node(orderViewCont.get_child(i), ingredientInstance)
+	
+	ingredientInstance = ingredientResource.instance()
+	ingredientInstance.name = "Order Bottom Bread"
+	ingredientInstance.texture = get('ingr'+str(ordBread+1))
+	orderViewCont.add_child_below_node(orderViewCont.get_child(orderViewCont.get_child_count()-1), ingredientInstance)
+
+func calculateRating():
+	var numPlayerFillings = playerFillings.size()
+
+	if playerBread!=ordBread:
+		rating-=1
+	
+	if numPlayerFillings!=numFillings:
+		rating-=2
+	else:
+		var ordIngredientsUsed = 0
+		for i in range(numPlayerFillings):
+			if playerFillings.has(ordFillings[i]):
+				ordIngredientsUsed+=1
+		if ordIngredientsUsed!=numPlayerFillings:
+			rating-=2
+	
+	if numPlayerFillings!=0:
+		var preferredOrder = ordFillings.shuffle()
+
+		var wrongCount=0
+		for i in range(numPlayerFillings):
+			if playerFillings[i]!=preferredOrder[i]:
+				wrongCount+=1
+		rating-=(wrongCount/numFillings)*2
+	else:
+		rating-=2 
+	
+	totalRating+=rating
+	gameLoop()
+	
+func generateScore():
+	var averageRating = totalRating/5
+	var playerScore = round((averageRating/timeElapsed)*1000*abs(atan(averageRating)))
+	return playerScore
+	# tba: currency update
 
 # filling signals
 
@@ -179,8 +235,13 @@ func _on_Bread3Butt_button_up():
 	playerBread = 2
 	updateBread()
 
-func _ready():
-	gameLoop()
+
 
 func _on_ResetPlateButt_button_up():
 	emptyPlate()
+
+func _on_SubmitButt_button_up():
+	calculateRating()
+
+func _ready():
+	gameLoop()

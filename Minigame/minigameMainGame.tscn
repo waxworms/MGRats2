@@ -269,6 +269,12 @@ custom_styles/hover = SubResource( 7 )
 custom_styles/normal = SubResource( 8 )
 text = "Done"
 
+[node name="OrderViewContainer" type="GridContainer" parent="."]
+margin_left = 868.0
+margin_top = 4.0
+margin_right = 1018.0
+margin_bottom = 238.0
+
 [connection signal="button_up" from="FillsContainer/Filling1" to="." method="_on_Filling1_button_up"]
 [connection signal="button_up" from="FillsContainer/Filling2" to="." method="_on_Filling2_button_up"]
 [connection signal="button_up" from="FillsContainer/Filling3" to="." method="_on_Filling3_button_up"]
@@ -283,3 +289,4 @@ text = "Done"
 [connection signal="button_up" from="BreadContainer/Bread2Butt" to="." method="_on_Bread2Butt_button_up"]
 [connection signal="button_up" from="BreadContainer/Bread3Butt" to="." method="_on_Bread3Butt_button_up"]
 [connection signal="button_up" from="OtherButtsContainer/ResetPlateButt" to="." method="_on_ResetPlateButt_button_up"]
+[connection signal="button_up" from="OtherButtsContainer/SubmitButt" to="." method="_on_SubmitButt_button_up"]

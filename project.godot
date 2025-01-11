@@ -16,8 +16,9 @@ config/icon="res://icon.png"
 
 [autoload]
 
-PortalGameAreaScript="*res://Scenes/PortalGameAreaScript.gd"
 SignalBus="*res://Scenes/SignalBus.gd"
+PortalGameAreaScript="res://Scenes/PortalGameAreaScript.gd"
+MinigameGlobals="*res://Minigame/MinigameVariables.gd"
 
 [display]
 

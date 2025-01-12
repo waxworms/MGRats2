@@ -23,8 +23,7 @@ corner_radius_bottom_left = 100
 script = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 512, 314 )
-scale = Vector2( 1, 0.817708 )
+position = Vector2( 512, 384 )
 texture = ExtResource( 1 )
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -35,15 +34,15 @@ size_flags_vertical = 3
 
 [node name="ScoreColumnContainer" type="VBoxContainer" parent="MarginContainer"]
 margin_right = 1024.0
-margin_bottom = 628.0
+margin_bottom = 768.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
 [node name="YouWon" type="Label" parent="MarginContainer/ScoreColumnContainer"]
-margin_top = 216.0
+margin_top = 286.0
 margin_right = 1024.0
-margin_bottom = 262.0
+margin_bottom = 332.0
 size_flags_horizontal = 3
 size_flags_vertical = 5
 custom_fonts/font = SubResource( 1 )
@@ -51,24 +50,24 @@ text = "YOU WON!"
 align = 1
 
 [node name="ScoreLabel" type="Label" parent="MarginContainer/ScoreColumnContainer"]
-margin_top = 266.0
+margin_top = 336.0
 margin_right = 1024.0
-margin_bottom = 312.0
+margin_bottom = 382.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 1 )
 align = 1
 
 [node name="CoinsEarnedLabel" type="Label" parent="MarginContainer/ScoreColumnContainer"]
-margin_top = 316.0
+margin_top = 386.0
 margin_right = 1024.0
-margin_bottom = 362.0
+margin_bottom = 432.0
 custom_fonts/font = SubResource( 1 )
 align = 1
 
 [node name="MainGameButton" type="Button" parent="MarginContainer/ScoreColumnContainer"]
-margin_top = 366.0
+margin_top = 436.0
 margin_right = 1024.0
-margin_bottom = 412.0
+margin_bottom = 482.0
 custom_fonts/font = SubResource( 2 )
 custom_styles/normal = SubResource( 3 )
 text = "Return to main game"

@@ -11,7 +11,7 @@ config_version=4
 [application]
 
 config/name="Mgrats 2"
-run/main_scene="res://Scenes/GameMainMenuScene.tscn"
+run/main_scene="res://Scenes/Menu/GameLogInScene.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -21,7 +21,7 @@ MinigameGlobals="*res://Minigame/MinigameVariables.gd"
 
 [display]
 
-window/size/height=628
+window/size/height=768
 window/size/resizable=false
 
 [gui]

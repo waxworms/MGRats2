@@ -1,14 +1,16 @@
 extends KinematicBody2D
 
-export (int) var speed = 100
+export (int) var speed = 256
 var velocity = Vector2()
 
-onready var target = position
+onready var target = Vector2(position.x-120, position.y)
 var isMouse = true
 
 func _ready():
 	SignalBus.connect("playerEnteredDoorRight", self, "_on_enteredDoorRight")
 	SignalBus.connect("playerEnteredDoorLeft", self, "_on_enteredDoorLeft")
+	SignalBus.connect("playerEnteredDoorDown", self, "_on_enteredDoorDown")
+	SignalBus.connect("playerEnteredDoorUp", self, "_on_enteredDoorUp")
 
 func _on_enteredDoorRight():
 	self.global_position.x += 120
@@ -16,6 +18,12 @@ func _on_enteredDoorRight():
 
 func _on_enteredDoorLeft():
 	self.global_position.x -= 120
+
+func _on_enteredDoorDown():
+	self.global_position.y +=200
+
+func _on_enteredDoorUp():
+	self.global_position.y -=200
 
 func get_input():
 	var movement_direction = Vector2()
@@ -46,7 +54,8 @@ func get_input():
 
 func _physics_process(_delta):
 	get_input()
-	if velocity.distance_to(target)>10:
-		velocity = move_and_slide(velocity)
+	if isMouse:
+		if position.distance_to(target)>2:
+			velocity = move_and_slide(velocity)
 	else:
-		velocity = move_and_collide(velocity)
+		velocity = move_and_slide(velocity)

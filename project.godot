@@ -11,13 +11,12 @@ config_version=4
 [application]
 
 config/name="Mgrats 2"
-run/main_scene="res://Minigame/minigameMainGame.tscn"
+run/main_scene="res://Scenes/GameMainMenuScene.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 SignalBus="*res://Scenes/SignalBus.gd"
-PortalGameAreaScript="res://Scenes/PortalGameAreaScript.gd"
 MinigameGlobals="*res://Minigame/MinigameVariables.gd"
 
 [display]

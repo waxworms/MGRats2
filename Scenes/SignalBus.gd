@@ -2,3 +2,5 @@ extends Node
 
 signal playerEnteredDoorLeft
 signal playerEnteredDoorRight
+signal playerEnteredDoorDown
+signal playerEnteredDoorUp
